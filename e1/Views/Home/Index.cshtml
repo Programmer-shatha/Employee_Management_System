@@ -1,0 +1,121 @@
+﻿@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Home Page";
+    var projects = ViewBag.Projects as List<dynamic>;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card bg-danger shadow-sm">
+                <div class="card-body text-center text-white">
+                    <h2 class="card-title"><i class="fas fa-users"></i> Employees</h2>
+                    <h5 class="card-text">@ViewBag.EmployeeCount</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-primary shadow-sm">
+                <div class="card-body text-center text-white">
+                    <h2 class="card-title"><i class="fas fa-building"></i> Departments</h2>
+                    <h5 class="card-text">@ViewBag.DepartmentCount</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning shadow-sm">
+                <div class="card-body text-center text-white">
+                    <h2 class="card-title"><i class="fas fa-project-diagram"></i> Projects</h2>
+                    <h5 class="card-text">@ViewBag.ProjectCount</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Relationship Chart</h4>
+                    <canvas id="relationshipChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Project-Employee Chart</h4>
+                    <canvas id="projectEmployeeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Get the canvas elements
+    const ctx1 = document.getElementById('relationshipChart').getContext('2d');
+    const ctx2 = document.getElementById('projectEmployeeChart').getContext('2d');
+
+    // Get the data from ViewBag
+    const employeeCount = @ViewBag.EmployeeCount;
+    const departmentCount = @ViewBag.DepartmentCount;
+    const projectCount = @ViewBag.ProjectCount;
+    const projects = @Html.Raw(@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Projects));
+
+    // Prepare the data for the relationship chart
+    const relationshipData = {
+        labels: ['Employees', 'Departments', 'Projects'],
+        datasets: [{
+            label: 'Count',
+            data: [employeeCount, departmentCount, projectCount],
+            backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'],
+            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+            borderWidth: 1
+        }]
+    };
+
+    // Create the relationship chart
+    const myBarChart = new Chart(ctx1, {
+        type: 'bar',
+        data: relationshipData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Prepare the data for the project-employee chart
+    const projectLabels = projects.map(p => p.Name);
+    const projectData = projects.map(p => p.EmployeeCount);
+
+    const projectEmployeeData = {
+        labels: projectLabels,
+        datasets: [{
+            label: 'Employees',
+            data: projectData,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Create the project-employee chart
+    const myProjectEmployeeChart = new Chart(ctx2, {
+        type: 'bar',
+        data: projectEmployeeData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+

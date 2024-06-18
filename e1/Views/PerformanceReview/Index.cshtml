@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PerformanceReview>
+
+@{
+    ViewData["Title"] = "Performance Reviews";
+}
+
+<h1>Performance Reviews</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Add New Review +</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Review Date</th>
+            <th>Comments</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Employee.FullName</td>
+                <td>@item.ReviewDate.ToShortDateString()</td>
+                <td>@item.Comments</td>
+                <td>@item.Rating</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PerformanceReviewId" class="btn btn-warning"><i class="fa fa-edit text-white"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.PerformanceReviewId" class="btn btn-danger"><i class="fa fa-trash text-white"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,51 @@
+﻿@model PerformanceReview
+
+@{
+    ViewData["Title"] = "Edit Performance Review";
+}
+
+<h1>Edit Performance Review</h1>
+
+<h4>Performance Review</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="PerformanceReviewId" />
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>
+                <select asp-for="@Model.EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewDate" class="control-label"></label>
+                <input asp-for="@Model.ReviewDate" class="form-control" type="date" />
+                <span asp-validation-for="ReviewDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <textarea asp-for="@Model.Comments" class="form-control"></textarea>
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="@Model.Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

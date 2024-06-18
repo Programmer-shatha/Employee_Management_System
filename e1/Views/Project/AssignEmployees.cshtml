@@ -1,0 +1,34 @@
+﻿@model EmployeeProject
+
+@{
+    ViewData["Title"] = "Assign Employees";
+}
+
+<h1>Assign Employees</h1>
+
+<h4>EmployeeProject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AssignEmployees">
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>
+                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ProjectId" />
+                <input type="submit" value="Assign" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

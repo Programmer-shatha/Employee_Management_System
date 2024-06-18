@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - employee_system</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/employee_system.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+   <header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky ">
+        <div class="list-group  mx-3 mt-4">
+          <a asp-controller="Home" asp-action="index" class="list-group-item list-group-item-action py-2 " aria-current="true">
+                        <i class="fa fa-qrcode  me-3 text-secondary"></i><span class="text-secondary">Dashboard</span>
+          </a>
+                    <a asp-controller="Employee" asp-action="index" class="list-group-item list-group-item-action py-2 ">
+              <i class="fa fa-users me-3 text-secondary"></i><span class="text-secondary">Employee</span>
+                    </a>
+                    <a asp-controller="Department" asp-action="index" class="list-group-item list-group-item-action py-2 ">
+              <i class="fa fa-pie-chart  me-3 text-secondary"></i><span class="text-secondary">Department</span>
+                    </a>
+                    <a asp-controller="Attendance" asp-action="index" class="list-group-item list-group-item-action py-2">
+            <i class="fa fa-sticky-note me-3 text-secondary"></i><span class="text-secondary">Attendance</span>
+          </a>
+                    <a asp-controller="Leave" asp-action="index" class="list-group-item list-group-item-action py-2 ">
+                        <i class='fa fa-calendar-alt me-3 text-secondary'></i><span class="text-secondary">Leave</span>
+                    </a>
+                    <a asp-controller="Salary" asp-action="index" class="list-group-item list-group-item-action py-2 ">
+                        <i class="fa fa-money me-3 text-secondary"></i><span class="text-secondary">Salary</span>
+                    </a>
+
+                    <a asp-controller="PerformanceReview" asp-action="index" class="list-group-item list-group-item-action py-2 ">
+                        <i class="fas fa-star me-1 text-secondary"></i><span class="text-secondary"> PerformanceReview</span>
+                    </a>
+                    <a asp-controller="Project" asp-action="index" class="list-group-item list-group-item-action py-2 ">
+                        <i class='fa fa-tasks me-3 text-secondary'></i><span class="text-secondary">Project</span>
+                    </a>
+
+                   
+                    
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+          aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+  
+        <div class="navbar-nav ms-auto ">
+          <div class="nav-item mx-3 mt-2 text-white ">
+                        <a class="navbar-brand" href="#">
+                            <i class="fa fa-institution text-white" style="font-size:25px;"> Employee Management System</i>
+                        </a>
+        </div>
+          <div class="nav-item">
+            
+                        <div class="nav-item  mt-2  ">
+                            <h4 class="text-white"><partial name="_LoginPartial" /></h4>
+                        </div>
+        </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+</header>
+
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            @RenderBody()
+        </div>
+    </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7ie1N5NOCYo9yW5Oob/16+BOmJ5jq63qFBo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+   
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
